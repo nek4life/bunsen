@@ -1,0 +1,19 @@
+from pyramid import threadlocal
+from pyramid.events import BeforeRender, subscriber
+from pyramid.exceptions import ConfigurationError
+
+@subscriber(BeforeRender)
+def add_renderer_globals(event):
+    """
+    A subscriber that registers global variables that are
+    available to request renderers
+    """
+    renderer_globals = event
+    request = event.get("request") or threadlocal.get_current_request()
+    if not request:
+        return
+    try:
+        renderer_globals["session"] = request.session
+    except ConfigurationError:
+        pass
+    renderer_globals["static_url"] = request.static_url("{{package}}:static/")[:-1]
