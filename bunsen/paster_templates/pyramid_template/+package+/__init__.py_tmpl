@@ -1,6 +1,5 @@
 import pyramid_beaker
 import pyramid_jinja2
-import sqlahelper
 
 from pyramid.config import Configurator
 from sqlalchemy import engine_from_config
@@ -14,7 +13,6 @@ def main(global_config, **settings):
     
     # Configure database engine
     engine = engine_from_config(settings, 'sqlalchemy.')
-    sqlahelper.add_engine(engine)
 
     # Configure Beaker sessions and caching
     session_factory = pyramid_beaker.session_factory_from_settings(settings)
@@ -42,6 +40,6 @@ def main(global_config, **settings):
 
     # Initialize Database Tables
     config.scan("{{package}}.models")
-    initialize_sql()
+    initialize_sql(engine)
     return config.make_wsgi_app()
 

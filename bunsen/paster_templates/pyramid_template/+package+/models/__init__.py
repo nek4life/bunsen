@@ -1,12 +1,14 @@
 import logging
 import transaction
-import sqlahelper
+from sqlalchemy.orm import sessionmaker, scoped_session
+from sqlalchemy.ext.declarative import declarative_base
+from zope.sqlalchemy import ZopeTransactionExtension
 
 log = logging.getLogger(__name__)
 
-Session = sqlahelper.get_session()
-Base = sqlahelper.get_base()
+Session = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
+Base = declarative_base()
 
-def initialize_sql():
-    Base.metadata.create_all()
+def initialize_sql(engine):
+    Base.metadata.create_all(engine)
     transaction.commit()

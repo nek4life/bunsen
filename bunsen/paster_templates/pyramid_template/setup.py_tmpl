@@ -13,7 +13,6 @@ requires = [
     'pyramid_jinja2',
     'pyramid_beaker',
     'pyramid_tm',
-    'SQLAHelper',
     'SQLAlchemy',
     'transaction',
     'WTForms',

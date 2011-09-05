@@ -6,3 +6,4 @@
 *.pyc
 *.pyo
 *.DS_Store
+/tester
