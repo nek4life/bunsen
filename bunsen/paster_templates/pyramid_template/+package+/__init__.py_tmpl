@@ -12,20 +12,20 @@ def main(global_config, **settings):
     """
     config = Configurator(settings=settings)
     
-    # Configure Database Engine
+    # Configure database engine
     engine = engine_from_config(settings, 'sqlalchemy.')
     sqlahelper.add_engine(engine)
 
-    # Configure Beaker Sessions and Caching
+    # Configure Beaker sessions and caching
     session_factory = pyramid_beaker.session_factory_from_settings(settings)
     config.set_session_factory(session_factory)
     pyramid_beaker.set_cache_regions_from_settings(settings)
 
-    # Configure Jinja2 Templates
+    # Configure Jinja2 templates
     config.include("pyramid_jinja2")
     config.add_renderer('.html', pyramid_jinja2.renderer_factory)
 
-    # Add Static Views
+    # Configure static views
     config.add_static_view('static', '{{package}}:static')
 
     # Include Application Views such as custom Exception Views and Root-Relative
@@ -41,6 +41,7 @@ def main(global_config, **settings):
     config.scan("{{package}}.subscribers")
 
     # Initialize Database Tables
+    config.scan("{{package}}.models")
     initialize_sql()
     return config.make_wsgi_app()
 
