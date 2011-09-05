@@ -30,10 +30,10 @@ def main(global_config, **settings):
 
     # Include Application Views such as custom Exception Views and Root-Relative
     # static asset views
-    config.include('{{package}}.views.appconfig')
+    config.include('{{package}}.views:includeme')
 
     # Include Routes
-    config.include("{{package}}.routes")
+    config.include("{{package}}.routes:includeme")
 
     # Using config.scan() will search for decorators that supply further
     # configuration such as the @view_config and @subscriber decorators
