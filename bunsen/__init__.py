@@ -1,6 +1,5 @@
 import os
 import mimetypes
-from pyramid.config import Configurator
 from pyramid.asset import abspath_from_asset_spec
 from pyramid.interfaces import IResponse
 from zope.interface import implements
