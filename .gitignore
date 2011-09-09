@@ -7,3 +7,5 @@
 *.pyo
 *.DS_Store
 /tester
+/bulid
+/dist
