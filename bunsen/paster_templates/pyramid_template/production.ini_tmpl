@@ -26,7 +26,7 @@ session.cookie_on_exception = true
 sqlalchemy.url = sqlite:///%(here)s/{{package}}.sqlite
 jinja2.directories = {{package}}:templates
 
-custom_internal_server_error = true
+custom_500_error = true
 
 [server:main]
 use = egg:Paste#http
