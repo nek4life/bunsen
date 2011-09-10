@@ -28,9 +28,10 @@ def main(global_config, **settings):
 
     # Include Application Views such as custom Exception Views and Root-Relative
     # static asset views
-    config.include("bunsen")
-    config.add_asset_views('{{package}}:static', 'favicon.ico', 
-                           'crossdomain.xml', 'robots.txt', 'humans.txt')                       
+    config.include("pyramid_assetviews")
+    filenames = ['favicon.ico', 'robots.txt', 'humans.txt', 'crossdomain.xml']
+    config.add_asset_views('{{package}}:static', *filenames)
+
     config.include('{{package}}.views:includeme')
     
     # Include Routes
