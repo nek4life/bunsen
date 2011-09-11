@@ -4,8 +4,8 @@ import sys
 from setuptools import setup, find_packages
 
 here = os.path.abspath(os.path.dirname(__file__))
-# README = open(os.path.join(here, 'README.txt')).read()
-# CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
+README = open(os.path.join(here, 'README.txt')).read()
+CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = [
     'pyramid'
@@ -15,15 +15,15 @@ if sys.version_info[:3] < (2,5,0):
     requires.append('pysqlite')
 
 setup(name='bunsen',
-      version='0.0',
+      version='1.0a1',
       description='bunsen',
       classifiers=[
         "Programming Language :: Python",
         ],
-      author='',
-      author_email='',
-      url='',
-      keywords='pyramid',
+      author='Charlie Choiniere',
+      author_email='nek4life@gmail.com',
+      url='https://github.com/nek4life/bunsen',
+      keywords='pyramid paster',
       packages=find_packages(),
       include_package_data=True,
       zip_safe=False,

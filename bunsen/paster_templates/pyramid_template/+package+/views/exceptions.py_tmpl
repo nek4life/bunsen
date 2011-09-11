@@ -1,6 +1,4 @@
-import os
 from pyramid.httpexceptions import HTTPNotFound
-from pyramid.response import Response
 from pyramid.settings import asbool
 
 def includeme(config):
@@ -8,9 +6,9 @@ def includeme(config):
     config.add_view(notfound_view, renderer='404.html', context=HTTPNotFound)
     custom_500_error = asbool(settings.get('custom_500_error', 'false'))
     if custom_500_error:
-        config.add_view(internal_error_view, renderer='500.html', context=Exception)
+        config.add_view(internal_error_view, renderer='500.html',
+                        context=Exception)
 
-# Exception Views
 def notfound_view(request):
     request.response.status_int = 404
     current_url = request.application_url + request.path

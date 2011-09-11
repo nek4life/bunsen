@@ -26,13 +26,15 @@ def main(global_config, **settings):
     # Configure static views
     config.add_static_view('static', '{{package}}:static')
 
-    # Include Application Views such as custom Exception Views and Root-Relative
-    # static asset views
+    # Configure Root-Relative static asset views. For usage documenation see
+    # http://packages.python.org/pyramid_assetviews/#usage
     config.include("pyramid_assetviews")
     filenames = ['favicon.ico', 'robots.txt', 'humans.txt', 'crossdomain.xml']
-    config.add_asset_views('{{package}}:static', *filenames)
+    config.add_asset_views('{{package}}:static', filenames=filenames)
 
-    config.include('{{package}}.views:includeme')
+    # Configure custom exception views to use a custom 500 view in production
+    # set the custom_500_view setting to ``true``.
+    config.include('{{package}}.views.exceptions')
     
     # Include Routes
     config.include("{{package}}.routes:includeme")
