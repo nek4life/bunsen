@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{ static_url }}/css/screen.css">
     {% block extra_stylesheets %}{% endblock %}
 
-    <script src="{{ static_url }}/js/thirdparty/modernizr-2.0.6.min.js"></script>
+    <script src="{{ static_url }}/js/thirdparty/modernizr-2.5.3.min.js"></script>
 </head>
 
 <body>
@@ -31,8 +31,8 @@
 
 
     <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-    <script>window.jQuery || document.write('<script src="{{ static_url }}/js/thirdparty/jquery-1.6.2.min.js"><\/script>')</script>
+    <script src="{{ static_url }}/js/thirdparty/jquery-1.7.2.min.js"></script>
+
 
     {% block extra_scripts %}{% endblock %}
 
