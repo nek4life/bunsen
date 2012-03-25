@@ -20,9 +20,8 @@ def main(global_config, **settings):
     config.set_session_factory(session_factory)
     pyramid_beaker.set_cache_regions_from_settings(settings)
 
-    # Configure Jinja2 templates, including a renderer factory for .html files
+    # Configure Jinja2 templates, including a renderer factory for .jinja2 files
     config.include("pyramid_jinja2")
-    config.add_renderer('.html', pyramid_jinja2.renderer_factory)
 
     # Configure static views
     config.add_static_view('static', '{{package}}:static', cache_max_age=3600)

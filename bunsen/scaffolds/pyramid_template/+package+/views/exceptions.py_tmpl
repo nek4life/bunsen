@@ -3,10 +3,10 @@ from pyramid.settings import asbool
 
 def includeme(config):
     settings = config.registry.settings
-    config.add_view(notfound_view, renderer='404.html', context=HTTPNotFound)
+    config.add_view(notfound_view, renderer='404.jinja2', context=HTTPNotFound)
     custom_500_error = asbool(settings.get('custom_500_error', 'false'))
     if custom_500_error:
-        config.add_view(internal_error_view, renderer='500.html',
+        config.add_view(internal_error_view, renderer='500.jinja2',
                         context=Exception)
 
 def notfound_view(request):

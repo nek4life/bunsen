@@ -16,4 +16,28 @@ def add_renderer_globals(event):
         renderer_globals["session"] = request.session
     except ConfigurationError:
         pass
+
+    flash_queues = ['debug', 'info', 'success', 'warning', 'error']
+
+    def has_messages():
+        peek_flash = request.session.peek_flash
+        if [q for q in flash_queues if peek_flash(q)] or peek_flash():
+            return True
+        return False
+
+    def get_messages():
+        messages = []
+        for queue in flash_queues:
+            for message in request.session.pop_flash(queue):
+                messages.append({"level": queue, 'body': message})
+        for message in request.session.pop_flash():
+            messages.append({"level": "info", 'body': message})
+        return messages
+
+    flash = {
+        "has_messages": has_messages,
+        "get_messages": get_messages
+    }
+
+    renderer_globals["flash"] = flash
     renderer_globals["static_url"] = request.static_url("{{package}}:static/")[:-1]
