@@ -30,8 +30,8 @@ setup(name='bunsen',
       test_suite='bunsen',
       install_requires = requires,
       entry_points = """\
-      [paste.paster_create_template]
-      bunsen = bunsen.paster_templates:BunsenTemplate
+      [pyramid.scaffold]
+      bunsen = bunsen.scaffolds:BunsenTemplate
       """,
       paster_plugins=['pyramid'],
       )

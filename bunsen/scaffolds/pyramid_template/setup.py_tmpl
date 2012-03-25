@@ -16,6 +16,7 @@ requires = [
     'pyramid_tm',
     'SQLAlchemy',
     'transaction',
+    'waitress',
     'WTForms',
     'zope.sqlalchemy',
     ]
@@ -42,10 +43,11 @@ setup(name='{{package}}',
       zip_safe=False,
       test_suite='{{package}}',
       install_requires = requires,
-      entry_points = """\
+      entry_points="""\
       [paste.app_factory]
       main = {{package}}:main
+      [console_scripts]
+      initialize_{{project}}_db = {{package}}.scripts.initializedb:main
       """,
-      paster_plugins=['pyramid'],
       )
 
